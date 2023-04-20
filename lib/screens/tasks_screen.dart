@@ -1,21 +1,11 @@
 import 'package:flutter/material.dart';
-import '../models/task.dart';
 import '/screens/add_task_screen.dart';
 import '/widgets/tasks_list.dart';
-import '/widgets/task_tile.dart';
+import 'package:provider/provider.dart';
+import 'package:tpdoey_flutter/models/task_data.dart';
 
-class TasksScreen extends StatefulWidget {
-  const TasksScreen({Key? key}) : super(key: key);
-  @override
-  State<TasksScreen> createState() => _TasksScreenState();
-} //class TasksScreen
-
-class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(name: 'Paint boat'),
-    Task(name: 'Sand hull'),
-    Task(name: 'Run rigging'),
-  ];
+class TasksScreen extends StatelessWidget {
+  //TODO section 206 video 12:46 change to stateless
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +22,10 @@ class _TasksScreenState extends State<TasksScreen> {
               child: Container(
                 padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
                 child: AddTaskScreen((newTaskTitle) {
-                  setState(() {
-                    tasks.add(Task(name: newTaskTitle));
-                  });
+                  //TODO adding new to-do list tasks section 207
+                  // setState(() {
+                  //   tasks.add(Task(name: newTaskTitle));
+                  // });
                   Navigator.pop(context);
                 }),
               ),
@@ -67,7 +58,10 @@ class _TasksScreenState extends State<TasksScreen> {
                   style: TextStyle(color: Colors.white, fontSize: 50.0, fontWeight: FontWeight.w700),
                 ),
                 Text(
-                  '${tasks.length} Tasks',
+                  //TODO video 8:15 section 206 convert to Provider.of for tasks list length - this will be refactored
+                  // '${Provider.of<TaskData>(context).tasks.length} Tasks',
+                  //TODO Section 206 video 17:35 using a getter to refactor the tasks.length code in two areas
+                  '${Provider.of<TaskData>(context).taskCount} Tasks',
                   style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.normal),
                 ),
               ],
@@ -83,7 +77,8 @@ class _TasksScreenState extends State<TasksScreen> {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: TaskList(tasks),
+              // TODO section 206 video 10:25
+              child: TaskList(),
             ),
           ),
         ], // children
