@@ -3,9 +3,11 @@ import 'package:provider/provider.dart';
 import '/models/task_data.dart';
 import '/screens/tasks_screen.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const ToDoMyApp());
 
-class MyApp extends StatelessWidget {
+class ToDoMyApp extends StatelessWidget {
+  const ToDoMyApp({super.key});
+
   // const MyApp({ Key? key }) : super(key: key);
 
   @override

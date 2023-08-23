@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '/models/task_data.dart';
 
 class AddTaskScreen extends StatelessWidget {
   // const AddTaskScreen({Key? key}) : super(key: key);
@@ -44,7 +46,10 @@ class AddTaskScreen extends StatelessWidget {
                   textStyle: const TextStyle(fontSize: 30, color: Colors.white),
                 ),
                 onPressed: () {
-                  addTaskCallback(newTaskTitle);
+                  //TODO section 207 video 6:41 this is using the method created in task_data.dart - she did not say you needed to have (context, listen: false). Without that you will crash.
+                  Provider.of<TaskData>(context, listen: false).addTask(newTaskTitle);
+                  Navigator.pop(context);
+                  // addTaskCallback(newTaskTitle);
                   // print('This is the newTaskTitle in add_tasks_screen: $newTaskTitle');
                 },
               ),
